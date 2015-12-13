@@ -71,12 +71,11 @@
    *  else false`
    * @example
    * var isMap = require('is-map-x');
-   * var ab = new ArrayBuffer(4);
-   * var dv = new DataView(ab);
+   * var m = new Map();
    *
-   * isMap(ab); // false
+   * isMap([]); // false
    * isMap(true); // false
-   * isMap(dv); // true
+   * isMap(m); // true
    */
   module.exports = function isMap(object) {
     if (!getSize || !isObjectLike(object)) {

@@ -42,10 +42,9 @@ Determine if an `object` is a `Map`.
 **Example**  
 ```js
 var isMap = require('is-map-x');
-var ab = new ArrayBuffer(4);
-var dv = new DataView(ab);
+var m = new Map();
 
-isMap(ab); // false
+isMap([]); // false
 isMap(true); // false
-isMap(dv); // true
+isMap(m); // true
 ```
