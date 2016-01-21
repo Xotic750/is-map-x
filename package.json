@@ -1,6 +1,6 @@
 {
   "name": "is-map-x",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "isMap module. Detect whether or not an object is an ES6 Map.",
   "homepage": "https://github.com/Xotic750/is-map-x",
   "author": {
