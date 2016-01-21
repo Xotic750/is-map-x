@@ -40,7 +40,7 @@
  * `es6.shim.js` provides compatibility shims so that legacy JavaScript engines
  * behave as closely as possible to ECMAScript 6 (Harmony).
  *
- * @version 1.0.4
+ * @version 1.0.5
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -60,8 +60,7 @@
 ;(function () {
   'use strict';
 
-  var ES = require('es-abstract/es6'),
-    isObjectLike = require('is-object-like-x'),
+  var isObjectLike = require('is-object-like-x'),
     MAP = typeof Map === 'function' && Map,
     getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor,
     getPrototypeOf = Object.getPrototypeOf,
@@ -73,7 +72,7 @@
         getPrototypeOf(new MAP()),
         'size'
       ).get;
-      if (typeof ES.Call(getSize, new MAP()) !== 'number') {
+      if (typeof getSize.call(new MAP()) !== 'number') {
         throw 'not a number';
       }
     } catch (ignore) {
@@ -100,7 +99,7 @@
       return false;
     }
     try {
-      return typeof ES.Call(getSize, object) === 'number';
+      return typeof getSize.call(object) === 'number';
     } catch (ignore) {}
     return false;
   };
