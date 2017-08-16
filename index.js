@@ -1,6 +1,6 @@
 /**
  * @file Detect whether or not an object is an ES6 Map.
- * @version 1.3.0
+ * @version 1.4.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -10,13 +10,13 @@
 'use strict';
 
 var isObjectLike;
-var getSize;
+var getSize = false;
 
 if (typeof Map === 'function') {
   try {
-    getSize = Object.getOwnPropertyDescriptor(Map.prototype, 'size').get;
-    getSize = typeof getSize.call(new Map()) === 'number' && getSize;
-    isObjectLike = require('is-object-like-x');
+    var size = Object.getOwnPropertyDescriptor(Map.prototype, 'size').get;
+    getSize = typeof size.call(new Map()) === 'number' && size;
+    isObjectLike = getSize && require('is-object-like-x');
   } catch (ignore) {}
 }
 
@@ -35,7 +35,7 @@ if (typeof Map === 'function') {
  * isMap(m); // true
  */
 module.exports = function isMap(object) {
-  if (Boolean(getSize) === false || isObjectLike(object) === false) {
+  if (getSize === false || isObjectLike(object) === false) {
     return false;
   }
 
