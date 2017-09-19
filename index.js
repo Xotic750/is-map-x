@@ -1,6 +1,6 @@
 /**
  * @file Detect whether or not an object is an ES6 Map.
- * @version 1.4.1
+ * @version 1.5.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -9,15 +9,30 @@
 
 'use strict';
 
+var isFalsey = require('is-falsey-x');
+var attempt;
 var isObjectLike;
-var getSize = false;
+var isLength;
+var getSize;
 
 if (typeof Map === 'function') {
-  try {
-    var size = Object.getOwnPropertyDescriptor(Map.prototype, 'size').get;
-    getSize = typeof size.call(new Map()) === 'number' && size;
-    isObjectLike = getSize && require('is-object-like-x');
-  } catch (ignore) {}
+  var descriptor = require('object-get-own-property-descriptor-x')(Map.prototype, 'size');
+  if (descriptor && typeof descriptor.get === 'function') {
+    attempt = require('attempt-x');
+    isObjectLike = require('is-object-like-x');
+    var res = attempt(function () {
+      return new Map();
+    });
+
+    if (res.threw === false && isObjectLike(res.value)) {
+      isLength = require('is-length-x');
+      res = attempt.call(res.value, descriptor.get);
+      if (res.threw === false && isLength(res.value)) {
+        getSize = descriptor.get;
+      }
+    }
+
+  }
 }
 
 /**
@@ -35,13 +50,10 @@ if (typeof Map === 'function') {
  * isMap(m); // true
  */
 module.exports = function isMap(object) {
-  if (getSize === false || isObjectLike(object) === false) {
+  if (isFalsey(getSize) || isObjectLike(object) === false) {
     return false;
   }
 
-  try {
-    return typeof getSize.call(object) === 'number';
-  } catch (ignore) {}
-
-  return false;
+  var result = attempt.call(object, getSize);
+  return result.threw === false && isLength(result.value);
 };
