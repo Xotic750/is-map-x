@@ -7,31 +7,31 @@
  * @module is-map-x
  */
 
-'use strict';
+const isFalsey = require('is-falsey-x');
 
-var isFalsey = require('is-falsey-x');
-var attempt;
-var isObjectLike;
-var isLength;
-var getSize;
+let attempt;
+let isObjectLike;
+let isLength;
+let getSize;
 
 if (typeof Map === 'function') {
-  var descriptor = require('object-get-own-property-descriptor-x')(Map.prototype, 'size');
+  const descriptor = require('object-get-own-property-descriptor-x')(Map.prototype, 'size');
+
   if (descriptor && typeof descriptor.get === 'function') {
     attempt = require('attempt-x');
     isObjectLike = require('is-object-like-x');
-    var res = attempt(function () {
+    let res = attempt(function() {
       return new Map();
     });
 
     if (res.threw === false && isObjectLike(res.value)) {
       isLength = require('is-length-x');
       res = attempt.call(res.value, descriptor.get);
+
       if (res.threw === false && isLength(res.value)) {
         getSize = descriptor.get;
       }
     }
-
   }
 }
 
@@ -54,6 +54,7 @@ module.exports = function isMap(object) {
     return false;
   }
 
-  var result = attempt.call(object, getSize);
+  const result = attempt.call(object, getSize);
+
   return result.threw === false && isLength(result.value);
 };
