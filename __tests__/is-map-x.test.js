@@ -41,6 +41,7 @@ const ifHasMap = hasMap ? it : xit;
 
 describe('isMap', function() {
   it('basic', function() {
+    expect.assertions(1);
     expect(isMap()).toBe(false);
     expect(isMap(undefined)).toBe(false);
     expect(isMap(null)).toBe(false);

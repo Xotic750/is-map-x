@@ -7,7 +7,7 @@
  * @module is-map-x
  */
 
-const isFalsey = require('is-falsey-x');
+import isFalsey from 'is-falsey-x';
 
 let attempt;
 let isObjectLike;
@@ -49,7 +49,7 @@ if (typeof Map === 'function') {
  * isMap(true); // false
  * isMap(m); // true
  */
-module.exports = function isMap(object) {
+export default function isMap(object) {
   if (isFalsey(getSize) || isObjectLike(object) === false) {
     return false;
   }
@@ -57,4 +57,4 @@ module.exports = function isMap(object) {
   const result = attempt.call(object, getSize);
 
   return result.threw === false && isLength(result.value);
-};
+}
