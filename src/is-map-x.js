@@ -1,12 +1,3 @@
-/**
- * @file Detect whether or not an object is an ES6 Map.
- * @version 1.5.0
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module is-map-x
- */
-
 import isFalsey from 'is-falsey-x';
 
 let attempt;
@@ -41,13 +32,6 @@ if (typeof Map === 'function') {
  * @param {*} object - The object to test.
  * @returns {boolean} `true` if the `object` is a `Map`,
  *  else `false`.
- * @example
- * var isMap = require('is-map-x');
- * var m = new Map();
- *
- * isMap([]); // false
- * isMap(true); // false
- * isMap(m); // true
  */
 export default function isMap(object) {
   if (isFalsey(getSize) || isObjectLike(object) === false) {
