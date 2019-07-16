@@ -21,31 +21,31 @@
 <a name="module_is-map-x"></a>
 
 ## is-map-x
+
 Detect whether or not an object is an ES6 Map.
 
-**Version**: 1.5.0  
-**Author**: Xotic750 <Xotic750@gmail.com>  
-**License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
-**Copyright**: Xotic750  
 <a name="exp_module_is-map-x--module.exports"></a>
 
 ### `module.exports(object)` ⇒ <code>boolean</code> ⏏
+
 Determine if an `object` is a `Map`.
 
 **Kind**: Exported function  
 **Returns**: <code>boolean</code> - `true` if the `object` is a `Map`,
- else `false`.  
+else `false`.
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param  | Type            | Description         |
+| ------ | --------------- | ------------------- |
 | object | <code>\*</code> | The object to test. |
 
-**Example**  
-```js
-var isMap = require('is-map-x');
-var m = new Map();
+**Example**
 
-isMap([]); // false
-isMap(true); // false
-isMap(m); // true
+```js
+import isMap from 'is-map-x';
+
+const m = new Map();
+
+console.log(isMap([])); // false
+console.log(isMap(true)); // false
+console.log(isMap(m)); // true
 ```

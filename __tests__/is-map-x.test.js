@@ -1,4 +1,4 @@
-let isMap;
+import isMap from '../src/is-map-x';
 
 let hasMap = typeof Map === 'function';
 
@@ -7,6 +7,7 @@ if (hasMap) {
     const getSize = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(new Map()), 'size').get;
 
     if (typeof getSize.call(new Map()) !== 'number') {
+      // noinspection ExceptionCaughtLocallyJS
       throw new TypeError('not a number');
     }
   } catch (ignore) {
@@ -18,7 +19,7 @@ const ifHasMap = hasMap ? it : xit;
 
 describe('isMap', function() {
   it('basic', function() {
-    expect.assertions(1) / expect(isMap()).toBe(false);
+    expect.assertions(7);
     expect(isMap(undefined)).toBe(false);
     expect(isMap(null)).toBe(false);
     expect(isMap(1)).toBe(false);
@@ -29,6 +30,7 @@ describe('isMap', function() {
   });
 
   ifHasMap('hasMap', function() {
+    expect.assertions(1);
     expect(isMap(new Map())).toBe(true);
   });
 });
