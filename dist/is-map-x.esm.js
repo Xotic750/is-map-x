@@ -41,13 +41,15 @@ if (typeof Map === 'function') {
  */
 
 
-export default function isMap(object) {
+var isMap = function isMap(object) {
   if (castBoolean(getSize) === false || isObjectLike(object) === false) {
     return false;
   }
 
   var result = attempt.call(object, getSize);
   return result.threw === false && isLength(result.value);
-}
+};
+
+export default isMap;
 
 //# sourceMappingURL=is-map-x.esm.js.map

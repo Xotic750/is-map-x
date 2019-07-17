@@ -35,7 +35,7 @@ if (typeof Map === 'function') {
  * @returns {boolean} `true` if the `object` is a `Map`,
  *  else `false`.
  */
-export default function isMap(object) {
+const isMap = function isMap(object) {
   if (castBoolean(getSize) === false || isObjectLike(object) === false) {
     return false;
   }
@@ -43,4 +43,6 @@ export default function isMap(object) {
   const result = attempt.call(object, getSize);
 
   return result.threw === false && isLength(result.value);
-}
+};
+
+export default isMap;
