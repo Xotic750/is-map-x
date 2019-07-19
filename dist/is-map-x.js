@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-18T22:49:47.313Z",
+  "date": "2019-07-19T22:29:08.237Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 Map.",
   "file": "is-map-x.js",
-  "hash": "43cebf6a2acc8f9d1350",
+  "hash": "348c4c16b6f1d356828a",
   "license": "MIT",
-  "version": "2.0.3"
+  "version": "2.0.4"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1319,7 +1319,7 @@ var hop = {}.hasOwnProperty;
  *
  * @param {!object} object - The object to test.
  * @throws {TypeError} If object is null or undefined.
- * @param {string|Symbol} property - The name or Symbol of the property to test.
+ * @param {string|number|Symbol} property - The name or Symbol of the property to test.
  * @returns {boolean} `true` if the property is set on `object`, else `false`.
  */
 
