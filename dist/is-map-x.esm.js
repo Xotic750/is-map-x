@@ -1,37 +1,39 @@
-var _this = this;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 import gOPD from 'object-get-own-property-descriptor-x';
 import attempt from 'attempt-x';
 import isObjectLike from 'is-object-like-x';
 import isLength from 'is-length-x';
-/** @type {BooleanConstructor} */
 
-var castBoolean = true.constructor;
-var getSize;
+var test1 = function test1() {
+  return attempt(function createMap() {
+    /* eslint-disable-next-line compat/compat */
+    return new Map();
+  });
+};
 
-if (typeof Map === 'function') {
-  /* eslint-disable-next-line compat/compat */
-  var descriptor = gOPD(Map.prototype, 'size');
+var x = function x() {
+  if (typeof Map === 'function') {
+    /* eslint-disable-next-line compat/compat */
+    var descriptor = gOPD(Map.prototype, 'size');
 
-  if (descriptor && typeof descriptor.get === 'function') {
-    var res = attempt(function () {
-      _newArrowCheck(this, _this);
+    if (descriptor && typeof descriptor.get === 'function') {
+      var resTest1 = test1();
 
-      /* eslint-disable-next-line compat/compat */
-      return new Map();
-    }.bind(this));
+      if (resTest1.threw === false && isObjectLike(resTest1.value)) {
+        var res = attempt.call(resTest1.value, descriptor.get);
 
-    if (res.threw === false && isObjectLike(res.value)) {
-      res = attempt.call(res.value, descriptor.get);
-
-      if (res.threw === false && isLength(res.value)) {
-        getSize = descriptor.get;
+        if (res.threw === false && isLength(res.value)) {
+          return descriptor.get;
+        }
       }
     }
   }
-}
+  /* eslint-disable-next-line no-void */
+
+
+  return void 0;
+};
+
+var getSize = x();
 /**
  * Determine if an `object` is a `Map`.
  *
@@ -40,9 +42,8 @@ if (typeof Map === 'function') {
  *  else `false`.
  */
 
-
 var isMap = function isMap(object) {
-  if (castBoolean(getSize) === false || isObjectLike(object) === false) {
+  if (!getSize || isObjectLike(object) === false) {
     return false;
   }
 
