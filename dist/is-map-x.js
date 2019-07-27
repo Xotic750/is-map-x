@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-27T12:55:12.314Z",
+  "date": "2019-07-27T15:06:02.817Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 Map.",
   "file": "is-map-x.js",
-  "hash": "e77eeb924533077f0487",
+  "hash": "ac386f81663b99b005c6",
   "license": "MIT",
-  "version": "2.0.11"
+  "version": "2.0.12"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1374,8 +1374,6 @@ var binaryRadix = 2;
 var octalRadix = 8;
 var testCharsCount = 2;
 var to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
 var to_number_x_esm_castNumber = testCharsCount.constructor;
 var pStrSlice = to_number_x_esm_ERROR_MESSAGE.slice;
 var binaryRegex = /^0b[01]+$/i;
@@ -1958,7 +1956,7 @@ var is_map_x_esm_test1 = function test1() {
   });
 };
 
-var is_map_x_esm_x = function x() {
+var is_map_x_esm_getGetter = function getGetter() {
   if (typeof Map === 'function') {
     /* eslint-disable-next-line compat/compat */
     var descriptor = object_get_own_property_descriptor_x_esm(Map.prototype, 'size');
@@ -1981,7 +1979,7 @@ var is_map_x_esm_x = function x() {
   return void 0;
 };
 
-var getSize = is_map_x_esm_x();
+var getSize = is_map_x_esm_getGetter();
 /**
  * Determine if an `object` is a `Map`.
  *

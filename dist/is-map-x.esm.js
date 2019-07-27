@@ -10,7 +10,7 @@ var test1 = function test1() {
   });
 };
 
-var x = function x() {
+var getGetter = function getGetter() {
   if (typeof Map === 'function') {
     /* eslint-disable-next-line compat/compat */
     var descriptor = gOPD(Map.prototype, 'size');
@@ -33,7 +33,7 @@ var x = function x() {
   return void 0;
 };
 
-var getSize = x();
+var getSize = getGetter();
 /**
  * Determine if an `object` is a `Map`.
  *
