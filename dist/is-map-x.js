@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-27T22:03:41.930Z",
+  "date": "2019-07-29T19:51:08.149Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 Map.",
   "file": "is-map-x.js",
-  "hash": "ac386f81663b99b005c6",
+  "hash": "0bb129a8e9db65b81b1b",
   "license": "MIT",
   "version": "2.0.12"
 }
@@ -1956,27 +1956,35 @@ var is_map_x_esm_test1 = function test1() {
   });
 };
 
+var is_map_x_esm_getFromDescriptor = function getFromDescriptor(descriptor) {
+  var resTest1 = is_map_x_esm_test1();
+
+  if (resTest1.threw === false && is_object_like_x_esm(resTest1.value)) {
+    var res = attempt_x_esm.call(resTest1.value, descriptor.get);
+
+    if (res.threw === false && is_length_x_esm(res.value)) {
+      return descriptor.get;
+    }
+  }
+
+  return null;
+};
+
 var is_map_x_esm_getGetter = function getGetter() {
   if (typeof Map === 'function') {
     /* eslint-disable-next-line compat/compat */
     var descriptor = object_get_own_property_descriptor_x_esm(Map.prototype, 'size');
 
     if (descriptor && typeof descriptor.get === 'function') {
-      var resTest1 = is_map_x_esm_test1();
+      var getter = is_map_x_esm_getFromDescriptor(descriptor);
 
-      if (resTest1.threw === false && is_object_like_x_esm(resTest1.value)) {
-        var res = attempt_x_esm.call(resTest1.value, descriptor.get);
-
-        if (res.threw === false && is_length_x_esm(res.value)) {
-          return descriptor.get;
-        }
+      if (getter !== null) {
+        return getter;
       }
     }
   }
-  /* eslint-disable-next-line no-void */
 
-
-  return void 0;
+  return null;
 };
 
 var getSize = is_map_x_esm_getGetter();
@@ -1989,7 +1997,7 @@ var getSize = is_map_x_esm_getGetter();
  */
 
 var is_map_x_esm_isMap = function isMap(object) {
-  if (!getSize || is_object_like_x_esm(object) === false) {
+  if (getSize === null || is_object_like_x_esm(object) === false) {
     return false;
   }
 
