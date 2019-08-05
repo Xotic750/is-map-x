@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-08-04T23:22:36.028Z",
+  "date": "2019-08-05T10:49:06.678Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 Map.",
   "file": "is-map-x.js",
   "hash": "fd2b2381a557b5b79761",
   "license": "MIT",
-  "version": "2.0.13"
+  "version": "2.0.14"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
