@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-09-05T00:05:22.686Z",
+  "date": "2019-09-05T20:16:52.513Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 Map.",
   "file": "is-map-x.js",
